@@ -7,6 +7,8 @@ from entities.hero import Hero
 from entities.loot import Loot
 from entities.room import Room
 
+import modules.dice as dice
+
 def main():
     creature = Creature()
 
