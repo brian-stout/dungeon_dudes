@@ -10,10 +10,16 @@ class TestClassCreature(unittest.TestCase):
         self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
         self.assertEqual(creature.name, "Giant Rat")
 
+    def test_object_Creature_damage_method(self):
+        creature = dungeon_dudes.Creature(0)
+        creature.damage(1)
+        self.assertEqual(creature.hp, 1)
+        self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
+
     def test_object_Creature_str_method(self):
         creature = dungeon_dudes.Creature(0)
         string = creature.__str__()
-        self.assertEqual(string, 'Giant Rat: 1 hp')
+        self.assertEqual(string, 'Giant Rat: 2 hp')
 
 class TestClassHero(unittest.TestCase):
 

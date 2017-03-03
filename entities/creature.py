@@ -1,6 +1,6 @@
 class Creature():
     ##TODO: Needs to import this from a file stored outside of the program
-    creatureList = [[1, "Giant Rat"]]
+    creatureList = [[2, "Giant Rat"]]
 
     def __init__(self, creatureType):
         self._creatureType = creatureType
@@ -39,6 +39,9 @@ class Creature():
 
     def __str__(self):
         return self._name + ": " + str(self._hp) +" hp"
+
+    def damage(self, dmg):
+        self.hp -= dmg
 
 if __name__ == '__main__': pass
 
