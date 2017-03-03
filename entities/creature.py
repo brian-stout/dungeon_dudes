@@ -5,7 +5,7 @@ class Creature():
     def __init__(self, creatureType):
         self._creatureType = creatureType
         self._hp = Creature.creatureList[creatureType][0]
-        self._creatureName = Creature.creatureList[creatureType][1]
+        self._name = Creature.creatureList[creatureType][1]
 
     @property
     def hp(self):
@@ -16,21 +16,21 @@ class Creature():
         return self._creatureType
 
     @property
-    def creatureName(self):
-        return self._creatureName
+    def name(self):
+        return self._name
 
     @hp.setter
     def hp(self, hp):
         self._hp = hp
 
-    @creatureName.setter
-    def creatureName(self, creatureName):
-        self._creatureName = creatureName
+    @name.setter
+    def name(self, name):
+        self._name = name
 
     @creatureType.setter
     def creatureType(self, creatureType):
         self._creatureType = creatureType
-        self._creatureName = Creature.creatureList[creatureType][1]
+        self._name = Creature.creatureList[creatureType][1]
 
 if __name__ == '__main__': pass
 
