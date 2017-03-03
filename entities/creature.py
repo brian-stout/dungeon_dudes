@@ -1,12 +1,19 @@
 class Creature():
     ##TODO: Needs to import this from a file stored outside of the program
-    creatureList = [[2, "Giant Rat"]]
+    ##          or reorganize the list to make each entry single line
+    ##TODO:
+    ##TODO:
+    ##TODO:  Add a number of dice rolls to the creatureList
+    ##TODO:
+    ##TODO:
+    creatureList = [[10,3, "Hero"], [2, 1, "Giant Rat"]]
 
-    def __init__(self, creatureType):
+    def __init__(self, creatureType = 0):
         self._creatureType = creatureType
         self._maxHp = Creature.creatureList[creatureType][0]
         self._hp = Creature.creatureList[creatureType][0]
-        self._name = Creature.creatureList[creatureType][1]
+        self._diceRolls = Creature.creatureList[creatureType][1]
+        self._name = Creature.creatureList[creatureType][2]
 
     @property
     def maxHp(self):
@@ -15,6 +22,10 @@ class Creature():
     @property
     def hp(self):
         return self._hp
+
+    @property
+    def diceRolls(self):
+        return self._diceRolls
 
     @property
     def creatureType(self):
@@ -38,9 +49,9 @@ class Creature():
         self._name = Creature.creatureList[creatureType][1]
 
     def __str__(self):
-        return self._name + ": " + str(self._hp) +" hp"
+        return self._name + ": " + str(self._hp) + "/" + str(self._maxHp) + " hp"
 
-    def damage(self, dmg):
+    def take_damage(self, dmg):
         self.hp -= dmg
         #Ensures no overkills happens
         if self.hp < 0:
