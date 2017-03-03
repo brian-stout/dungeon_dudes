@@ -5,9 +5,9 @@ class TestClassCreation(unittest.TestCase):
 
     def test_object_Creature_creation(self):
         creature = dungeon_dudes.Creature(0)
-        assertEqual(creature.creatureType, 0)
-        assertEqual(creature.hp, 1)
-        assertEqual(creature.creatureName, "Giant Rat")
+        self.assertEqual(creature.creatureType, 0)
+        self.assertEqual(creature.hp, 1)
+        self.assertEqual(creature.name, "Giant Rat")
 
     def test_object_Hero_creation(self):
         hero = dungeon_dudes.Hero()
@@ -23,6 +23,13 @@ class TestClassCreation(unittest.TestCase):
 
     def test_object_Dice_creation(self):
         dice = dungeon_dudes.Dice()
+
+class TestClassStr(unittest.TestCase):
+    
+    def test_object_Creature_str_method(self):
+        creature = dungeon_dudes.Creature(0)
+        string = creature.__str__()
+        self.assertEqual(string, 'Giant Rat: 1 hp')
 
     ##def savestate
 

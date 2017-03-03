@@ -4,6 +4,7 @@ class Creature():
 
     def __init__(self, creatureType):
         self._creatureType = creatureType
+        #TODO: Max HP
         self._hp = Creature.creatureList[creatureType][0]
         self._name = Creature.creatureList[creatureType][1]
 
@@ -31,6 +32,9 @@ class Creature():
     def creatureType(self, creatureType):
         self._creatureType = creatureType
         self._name = Creature.creatureList[creatureType][1]
+
+    def __str__(self):
+        return self._name + ": " + str(self._hp) +" hp"
 
 if __name__ == '__main__': pass
 
