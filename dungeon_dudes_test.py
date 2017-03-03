@@ -1,7 +1,7 @@
 import unittest
 import dungeon_dudes as dungeon_dudes
 
-class TestClassCreation(unittest.TestCase):
+class TestClassCreature(unittest.TestCase):
 
     def test_object_Creature_creation(self):
         creature = dungeon_dudes.Creature(0)
@@ -9,24 +9,30 @@ class TestClassCreation(unittest.TestCase):
         self.assertEqual(creature.hp, 1)
         self.assertEqual(creature.name, "Giant Rat")
 
-    def test_object_Hero_creation(self):
-        hero = dungeon_dudes.Hero()
-
-    def test_object_Loot_creation(self):
-        loot = dungeon_dudes.Loot()
-
-    def test_object_Dungeon_creation(self):
-        dungeon = dungeon_dudes.Dungeon()
-
-    def test_object_Room_creation(self):
-        room = dungeon_dudes.Room()
-
-class TestClassStr(unittest.TestCase):
-    
     def test_object_Creature_str_method(self):
         creature = dungeon_dudes.Creature(0)
         string = creature.__str__()
         self.assertEqual(string, 'Giant Rat: 1 hp')
+
+class TestClassHero(unittest.TestCase):
+
+    def test_object_Hero_creation(self):
+        hero = dungeon_dudes.Hero()
+
+class TestClassLoot(unittest.TestCase):
+
+    def test_object_Loot_creation(self):
+        loot = dungeon_dudes.Loot()
+
+class TestClassDungeon(unittest.TestCase):
+
+    def test_object_Dungeon_creation(self):
+        dungeon = dungeon_dudes.Dungeon()
+
+class TestClassRoom(unittest.TestCase):
+
+    def test_object_Room_creation(self):
+        room = dungeon_dudes.Room()
 
 class TestModuleDice(unittest.TestCase):
 
