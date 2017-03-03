@@ -21,15 +21,30 @@ class TestClassCreation(unittest.TestCase):
     def test_object_Room_creation(self):
         room = dungeon_dudes.Room()
 
-    def test_object_Dice_creation(self):
-        dice = dungeon_dudes.Dice()
-
 class TestClassStr(unittest.TestCase):
     
     def test_object_Creature_str_method(self):
         creature = dungeon_dudes.Creature(0)
         string = creature.__str__()
         self.assertEqual(string, 'Giant Rat: 1 hp')
+
+class TestModuleDice(unittest.TestCase):
+
+    def test_dice_roll_d6(self):
+        roll = dungeon_dudes.dice.d6()
+        self.assertIn(roll, range(1,6))
+
+    def test_dice_roll_d10(self):
+        roll = dungeon_dudes.dice.d10()
+        self.assertIn(roll, range(1,10))
+
+    def test_dice_roll_d20(self):
+        roll = dungeon_dudes.dice.d20()
+        self.assertIn(roll, range(1,20))
+
+    def test_dice_roll_d100(self):
+        roll = dungeon_dudes.dice.d100()
+        self.assertIn(roll, range(1,100))
 
     ##def savestate
 
