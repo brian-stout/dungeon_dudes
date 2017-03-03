@@ -4,36 +4,41 @@ import dungeon_dudes as dungeon_dudes
 class TestClassCreature(unittest.TestCase):
 
     def test_object_Creature_creation(self):
-        creature = dungeon_dudes.Creature(0)
-        self.assertEqual(creature.creatureType, 0)
-        self.assertEqual(creature.hp, dungeon_dudes.Creature.creatureList[0][0])
-        self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
-        self.assertEqual(creature.name, "Giant Rat")
+        creature = dungeon_dudes.Creature(1)
+        self.assertEqual(creature.creatureType, 1)
+        self.assertEqual(creature.hp, dungeon_dudes.Creature.creatureList[1][0])
+        self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[1][0])
+        self.assertEqual(creature.name, dungeon_dudes.Creature.creatureList[1][2])
+        self.assertEqual(creature.diceRolls, dungeon_dudes.Creature.creatureList[1][1])
 
     def test_object_Creature_damage_method(self):
         creature = dungeon_dudes.Creature(0)
-        creature.damage(1)
-        self.assertEqual(creature.hp, 1)
+        creature.take_damage(1)
+        self.assertEqual(creature.hp, creature.maxHp - 1)
         self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
 
         #Tests to make hp never drops below 0
-        creature.damage(10)
+        creature.take_damage(10)
         self.assertEqual(creature.hp, 0)
 
     def test_object_Creature_is_dead_method(self):
         creature = dungeon_dudes.Creature(0)
-        creature.damage(2)
+        creature.take_damage(creature.hp)
         self.assertTrue(creature.is_dead())
 
     def test_object_Creature_str_method(self):
-        creature = dungeon_dudes.Creature(0)
+        creature = dungeon_dudes.Creature(1)
         string = creature.__str__()
-        self.assertEqual(string, 'Giant Rat: 2 hp')
+        self.assertEqual(string, 'Giant Rat: 2/2 hp')
 
 class TestClassHero(unittest.TestCase):
 
     def test_object_Hero_creation(self):
-        hero = dungeon_dudes.Hero()
+        hero = dungeon_dudes.Hero('Generic Hero Name')
+        self.assertEqual(hero.maxHp, 10)
+        self.assertEqual(hero.hp, 10)
+        self.assertEqual(hero.diceRolls, 3)
+        self.assertEqual(hero.name, 'Generic Hero Name')
 
 class TestClassLoot(unittest.TestCase):
 
