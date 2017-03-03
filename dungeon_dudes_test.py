@@ -6,7 +6,8 @@ class TestClassCreature(unittest.TestCase):
     def test_object_Creature_creation(self):
         creature = dungeon_dudes.Creature(0)
         self.assertEqual(creature.creatureType, 0)
-        self.assertEqual(creature.hp, 1)
+        self.assertEqual(creature.hp, dungeon_dudes.Creature.creatureList[0][0])
+        self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
         self.assertEqual(creature.name, "Giant Rat")
 
     def test_object_Creature_str_method(self):
@@ -38,19 +39,19 @@ class TestModuleDice(unittest.TestCase):
 
     def test_dice_roll_d6(self):
         roll = dungeon_dudes.dice.d6()
-        self.assertIn(roll, range(1,6))
+        self.assertIn(roll, range(1,7)) #Gives number between 0 and 7 (1-6)
 
     def test_dice_roll_d10(self):
         roll = dungeon_dudes.dice.d10()
-        self.assertIn(roll, range(1,10))
+        self.assertIn(roll, range(1,11))
 
     def test_dice_roll_d20(self):
         roll = dungeon_dudes.dice.d20()
-        self.assertIn(roll, range(1,20))
+        self.assertIn(roll, range(1,21))
 
     def test_dice_roll_d100(self):
         roll = dungeon_dudes.dice.d100()
-        self.assertIn(roll, range(1,100))
+        self.assertIn(roll, range(1,101))
 
     ##def savestate
 

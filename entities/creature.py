@@ -4,9 +4,13 @@ class Creature():
 
     def __init__(self, creatureType):
         self._creatureType = creatureType
-        #TODO: Max HP
+        self._maxHp = Creature.creatureList[creatureType][0]
         self._hp = Creature.creatureList[creatureType][0]
         self._name = Creature.creatureList[creatureType][1]
+
+    @property
+    def maxHp(self):
+        return self._maxHp
 
     @property
     def hp(self):
