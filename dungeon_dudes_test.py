@@ -4,7 +4,10 @@ import dungeon_dudes as dungeon_dudes
 class TestClassCreation(unittest.TestCase):
 
     def test_object_Creature_creation(self):
-        creature = dungeon_dudes.Creature()
+        creature = dungeon_dudes.Creature(0)
+        assertEqual(creature.creatureType, 0)
+        assertEqual(creature.hp, 1)
+        assertEqual(creature.creatureName, "Giant Rat")
 
     def test_object_Hero_creation(self):
         hero = dungeon_dudes.Hero()

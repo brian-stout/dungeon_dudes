@@ -1,4 +1,4 @@
-from creature import Creature
+from entities.creature import Creature
 
 class Hero(Creature):
     def __init__(self):
