@@ -16,6 +16,15 @@ class TestClassCreature(unittest.TestCase):
         self.assertEqual(creature.hp, 1)
         self.assertEqual(creature.maxHp, dungeon_dudes.Creature.creatureList[0][0])
 
+        #Tests to make hp never drops below 0
+        creature.damage(10)
+        self.assertEqual(creature.hp, 0)
+
+    def test_object_Creature_is_dead_method(self):
+        creature = dungeon_dudes.Creature(0)
+        creature.damage(2)
+        self.assertTrue(creature.is_dead())
+
     def test_object_Creature_str_method(self):
         creature = dungeon_dudes.Creature(0)
         string = creature.__str__()

@@ -42,6 +42,15 @@ class Creature():
 
     def damage(self, dmg):
         self.hp -= dmg
+        #Ensures no overkills happens
+        if self.hp < 0:
+            self.hp = 0
+
+    def is_dead(self):
+        if self.hp == 0:
+            return True
+        else:
+            return False
 
 if __name__ == '__main__': pass
 
