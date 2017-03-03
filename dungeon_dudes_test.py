@@ -21,6 +21,16 @@ class TestClassCreature(unittest.TestCase):
         creature.take_damage(10)
         self.assertEqual(creature.hp, 0)
 
+    def test_object_Creature_attack_method(self):
+        hero = dungeon_dudes.Hero('Generic Hero Name')
+        creature = dungeon_dudes.Creature(1)
+
+        hero.attack(creature)
+        creature.attack(hero)
+
+        print(hero)
+        print(creature)
+
     def test_object_Creature_is_dead_method(self):
         creature = dungeon_dudes.Creature(0)
         creature.take_damage(creature.hp)
