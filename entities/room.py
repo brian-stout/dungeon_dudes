@@ -6,7 +6,7 @@ def generate_loot_objects():
     pass
 
 def generate_monster_list():
-    monster = Creature(Room.numberOfRooms)
+    monster = Creature(dice.d6())
     monsterList = list()
     monsterList.append(monster)
     return monsterList

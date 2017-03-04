@@ -9,8 +9,17 @@ from entities.room import Room
 #Importing functions from modules for the game
 import modules.dice as dice
 
-def generate_dungeon():
-    pass
+def generate_rooms():
+    numberOfRooms = 6 + dice.d6()
+    roomList = list()
+
+    for number in range(0, numberOfRooms):
+        room = Room()
+        roomList.append(room)
+
+    return roomList
+        
+        
 
 def roll_for_initiative(hero, room):
     for monster in room.monsterList:
@@ -39,14 +48,9 @@ def main():
 
     print("You start your glorious adventure!")
 
-    roomList = list()
+    roomList = generate_rooms()
 
-    while True:
-        if boss.is_dead():
-            break
-
-        room = Room()
-        roomList.append(room)
+    print(roomList)
 
 if __name__ == "__main__":
     main()
