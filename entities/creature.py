@@ -3,7 +3,7 @@ import modules.dice as dice
 class Creature():
     ##TODO: Needs to import this from a file stored outside of the program
     ##          or reorganize the list to make each entry single line
-    creatureList = [[10, 3, "Hero"], [1, 1, "Giant Rat"], [1, 3, "Wolf"],
+    creatureList = [[100, 10, "Hero"], [1, 1, "Giant Rat"], [1, 3, "Wolf"],
                     [3, 1, "Skeleton"], [2, 2, "Goblin"], [5, 1, "Undead"],
                     [5, 3, "Orc Warrior"], [10, 3, "The Overlord"]]
 

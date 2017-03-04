@@ -5,12 +5,20 @@ import modules.dice as dice
 
 
 class Room():
+
+    roomDesc = [["dark dank dungeon. ", """You're surrounded by stone. The room is dimly lit, and from what you can see the walls are incredibly dirty. """],
+                ["well lit dank dungeon. ", """You're surrounded by stone. The room is well lit, showing just how awful the designer of this dungeon did. """],
+                ["normal room. ", """Out of the dungeon, the walls look like a regular castle.  There's armor and mediocre paintings lining up against the wall"""],
+                ["castle courtyard. ", """The sun spills from over the castle walls.  The dirt below your feet is well packed from constant travel.  You're surrounded by castle walls"""],
+                ["castle exit. ", """The only exit to the castle is a large oak wooden door.  At the opening stands the king of the castle, a villainous man know only as The Overlord"""]]
+
     numberOfRooms = 0
 
-    def __init__(self):
+    def __init__(self, roomType = 0):
         self._monsterList = self.generate_monster_list()
         self._cleared = False
         self._movingRooms = False
+        self._roomType = roomType
         Room.numberOfRooms += 1
 
     @property
@@ -51,6 +59,11 @@ class Room():
         monster = Creature(7)
         monsterList.append(monster)
 
+        self._roomType = 5
         self._monsterList = monsterList
+
+    def room_description(self):
+        print ("You enter a " + 
+                Room.roomDesc[self._roomType][0] + Room.roomDesc[self._roomType][1] + "\n")
 
 if __name__ == '__main__': pass

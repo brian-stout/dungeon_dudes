@@ -1,5 +1,8 @@
 #!usr/bin/env python3
 
+#Importing math for ceil
+import math
+
 #Importing the classes for the objects in this game
 from entities.creature import Creature
 from entities.hero import Hero
@@ -14,7 +17,8 @@ def generate_rooms():
     roomList = list()
 
     for number in range(0, numberOfRooms):
-        room = Room()
+        #Every 3 rooms the room type will go up by one
+        room = Room(math.ceil(Room.numberOfRooms/3))
         roomList.append(room)
 
     roomList[-1].make_boss_room()
@@ -28,15 +32,13 @@ def roll_for_initiative(hero, monsterList):
 
     hero.initiative = dice.d20()
 
-
-def check_inventory(hero):
-    print("Checking inventory")
-
 def move_to_next_room(room):
     if room.cleared:
         room.movingRooms = True
     else:
         for monster in room.monsterList:
+            if monster.name == "The Overlord":
+                break
             roll = dice.d20()
             if roll < 15:
                 break
@@ -52,13 +54,15 @@ def room_enemy_statuses(monsterList):
         print(monster)
 
 def use_menu(hero, room):
+
     print("A - Check your inventory")
     if room.cleared:
         print("B - Move on to the next room")
     else:
         print("B - Sneak to the next room")
     print("C - Check your health")
-    print("D - Check their health")
+    if not room.cleared:
+        print("D - Check their health")
     if not room.cleared:
         print("E - Attack the nearest enemy")
 
@@ -66,7 +70,7 @@ def use_menu(hero, room):
         switch = input("Select a menu option: ")
 
         if switch.upper() == "A":
-            check_inventory(hero)
+            hero.print_inventory()
         elif switch.upper() == "B":
             move_to_next_room(room)
             break
@@ -78,9 +82,12 @@ def use_menu(hero, room):
             if room.cleared:
                 print("There are no monsters to fight!")
             else:
+                print("")
                 hero.attack(room.monsterList[0])
                 if room.monsterList[0].is_dead():
                     room.monsterList.pop(0)
+                    loot = Loot(dice.d10())
+                    hero.add_to(loot)
                 if not room.monsterList:
                     room.cleared = True
             break
@@ -101,18 +108,24 @@ def main():
     #Creating boss
     boss = Creature(7)
 
-    print("You start your glorious adventure!")
+    print("You start your glorious adventure! \n")
 
     roomList = generate_rooms()
     currentRoom = 0
 
     while True:
+        if currentRoom == Room.numberOfRooms:
+            break
+
+        roomList[currentRoom].room_description()
+
         monsterList = roomList[currentRoom].monsterList
         roll_for_initiative(hero, monsterList)
 
         monsterList.sort(reverse=True)
 
         if(monsterList[0].initiative > hero.initiative):
+            print(monsterList[0].name + " got the jump on the hero!\n")
             monsterList[0].attack(hero)
         while True:
             use_menu(hero, roomList[currentRoom])
@@ -120,10 +133,13 @@ def main():
                 currentRoom += 1
                 break
             elif roomList[currentRoom].cleared == False:
+                print("")
                 monsterList[0].attack(hero)
                 if hero.is_dead():
                     print("The hero is dead!")
                     exit() #more legitimate exit here
+
+    print("You have succeeded in your quest!")
 
 
 
