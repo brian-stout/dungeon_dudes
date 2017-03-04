@@ -2,8 +2,15 @@ from entities.creature import Creature
 from entities.loot import Loot
 import modules.dice as dice
 
+"""
+    The room class create's objects that contain the metadata for the rooms the player is currently
+        in.
 
+    It's has a multi-dimensional list which contains a room name and it's description used to
+        texts when a player enters a new room.
 
+    The room also contains a list of monsters for easy access by the game logic.
+"""
 class Room():
 
     roomDesc = [["dark dank dungeon. ", """You're surrounded by stone. The room is dimly lit, and from what you can see the walls are incredibly dirty. """],
@@ -15,6 +22,7 @@ class Room():
     numberOfRooms = 0
 
     def __init__(self, roomType = 0):
+        #Create a list of monsters
         self._monsterList = self.generate_monster_list()
         self._cleared = False
         self._movingRooms = False
@@ -44,26 +52,32 @@ class Room():
     def generate_monster_list(self):
         monsterList = list()
 
+        #Pick a monster to add
         roll = dice.d6()
         monster = Creature(dice.d6())
         monsterList.append(monster)
 
+        #If the monster was weaker add another
         if roll < 4:
             monster = Creature(dice.d6())
             monsterList.append(monster)
 
         return monsterList
 
+    #Function making it easy to set the last room of the room list to a boss room
     def make_boss_room(self):
         monsterList = list()
+        #Adding the boss, and overwriting the base mobs
         monster = Creature(7)
         monsterList.append(monster)
 
-        self._roomType = 5
+        #roomType 4 is the boss room
+        self.roomType = 4
         self._monsterList = monsterList
 
+    #Used to print a description of the room upon entering it
     def room_description(self):
-        print ("You enter a " + 
-                Room.roomDesc[self._roomType][0] + Room.roomDesc[self._roomType][1] + "\n")
+        print ("You enter a " + Room.roomDesc[self._roomType][0])
+        print(Room.roomDesc[self._roomType][1] + "\n")
 
 if __name__ == '__main__': pass

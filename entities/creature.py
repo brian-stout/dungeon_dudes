@@ -1,11 +1,11 @@
 import modules.dice as dice
 
 class Creature():
-    ##TODO: Needs to import this from a file stored outside of the program
-    ##          or reorganize the list to make each entry single line
-    creatureList = [[100, 10, "Hero"], [1, 1, "Giant Rat"], [1, 3, "Wolf"],
+
+
+    creatureList = [[20, 3, "Hero"], [1, 1, "Giant Rat"], [1, 2, "Wolf"],
                     [3, 1, "Skeleton"], [2, 2, "Goblin"], [5, 1, "Undead"],
-                    [5, 3, "Orc Warrior"], [10, 3, "The Overlord"]]
+                    [5, 2, "Orc Warrior"], [10, 2, "The Overlord"]]
 
     def __init__(self, creatureType = 0):
         self._creatureType = creatureType
@@ -88,10 +88,10 @@ class Creature():
                 otherHighestRoll = roll
 
         if selfHighestRoll >= otherHighestRoll:
-            print(self.name + " hit " + other.name + "!")
+            print(self.name + " hit " + other.name + "!\n")
             other.take_damage(1)
         else:
-            print(self.name + " missed " + other.name + "!")
+            print(self.name + " missed " + other.name + "!\n")
       
 
     def is_dead(self):

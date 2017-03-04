@@ -1,5 +1,10 @@
 import modules.dice as dice
+"""
+        This class create's objects which monster's drop when they die.
 
+        It contains a multi-dimensional array used to determine the value of the loot, it's name,
+            and allow the game to print a description
+"""
 class Loot():
 
     lootList = [[],[1, "Wooden stick", "A worthless wooden stick you couldn't help but pick up"],
@@ -51,6 +56,7 @@ class Loot():
     def description(self, description):
         self._description = description
 
+    #Format:   Woooden Stick (1) A worthless wooden stick you couldn't help but pick up
     def __str__(self):
         return self._name + " (" + str(self._value) + ") " + self._description
 
