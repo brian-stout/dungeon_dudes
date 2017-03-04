@@ -17,6 +17,8 @@ def generate_rooms():
         room = Room()
         roomList.append(room)
 
+    roomList[-1].make_boss_room()
+
     return roomList
 
 
@@ -82,6 +84,10 @@ def use_menu(hero, room):
                 if not room.monsterList:
                     room.cleared = True
             break
+        elif switch.upper() == "Q":
+            exit()
+        else:
+            print("Please enter a proper value")
         
 
     

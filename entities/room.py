@@ -2,22 +2,13 @@ from entities.creature import Creature
 from entities.loot import Loot
 import modules.dice as dice
 
-def generate_loot_objects():
-    pass
 
-def generate_monster_list():
-    monsterList = list()
-    monster = Creature(dice.d6())
-    monsterList.append(monster)
-    monster = Creature(dice.d6())
-    monsterList.append(monster)
-    return monsterList
 
 class Room():
     numberOfRooms = 0
 
     def __init__(self):
-        self._monsterList = generate_monster_list()
+        self._monsterList = self.generate_monster_list()
         self._cleared = False
         self._movingRooms = False
         Room.numberOfRooms += 1
@@ -41,5 +32,25 @@ class Room():
     @movingRooms.setter
     def movingRooms(self, boolean):
         self._movingRooms = boolean
+
+    def generate_monster_list(self):
+        monsterList = list()
+
+        roll = dice.d6()
+        monster = Creature(dice.d6())
+        monsterList.append(monster)
+
+        if roll < 4:
+            monster = Creature(dice.d6())
+            monsterList.append(monster)
+
+        return monsterList
+
+    def make_boss_room(self):
+        monsterList = list()
+        monster = Creature(7)
+        monsterList.append(monster)
+
+        self._monsterList = monsterList
 
 if __name__ == '__main__': pass
