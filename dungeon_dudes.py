@@ -16,11 +16,11 @@ import modules.dice as dice
     generate_rooms() is responsible for creating a list of rooms for the players to travel
         through.
 
-    It does so by getting a random number from 1 to 6 and adding it to 6, so the smallest room count
-        can be 7 and the highest can be 6.
+    It does so by getting a random number from 1 to 6 and adding it to 6, so the smallest 
+room count can be 7 and the highest can be 6.
 
-    It picks the room type by divding the number of rooms by 3 and celing it, so every 3 rooms
-        There's another type.
+    It picks the room type by divding the number of rooms by 3 and celing it, so 
+every 3 rooms There's another type.
 
     The function also makes sure the last room in the list is the boss room
 """
@@ -48,10 +48,12 @@ def roll_for_initiative(hero, monsterList):
     hero.initiative = dice.d20()
 
 """
-        move_to_next_room() is responsible for handling the logic for transitioning to the next room
+        move_to_next_room() is responsible for handling the logic for transitioning 
+            to the next room
 
-        If the room has been cleared the hero will always move on to the next room.  Otherwise,
-            The hero must roll a 15 or higher for every monster in the room to escape
+        If the room has been cleared the hero will always move on to the next room.  
+            Otherwise, The hero must roll a 15 or higher for every monster 
+            in the room to escape
 
         If the hero is in the boss room he can't escape
 """
@@ -137,10 +139,7 @@ def use_menu(hero, room):
         #Default option for if the user inputs a bad letter
         else:
             print("Please enter a proper value")
-        
 
-    
-    
 
 def main():
 
@@ -168,7 +167,7 @@ def main():
         #Runs a function that prints the name of the room and gives a description
         roomList[currentRoom].room_description()
 
-        #Makes a shorter reference to improve readability 
+        #Makes a shorter reference to improve readability
         monsterList = roomList[currentRoom].monsterList
 
         #Sets the initiative for all the monsters
