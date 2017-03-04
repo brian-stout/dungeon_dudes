@@ -6,8 +6,10 @@ def generate_loot_objects():
     pass
 
 def generate_monster_list():
-    monster = Creature(dice.d6())
     monsterList = list()
+    monster = Creature(dice.d6())
+    monsterList.append(monster)
+    monster = Creature(dice.d6())
     monsterList.append(monster)
     return monsterList
 
@@ -16,7 +18,8 @@ class Room():
 
     def __init__(self):
         self._monsterList = generate_monster_list()
-        self._roomCleared = False
+        self._cleared = False
+        self._movingRooms = False
         Room.numberOfRooms += 1
 
     @property
@@ -24,14 +27,19 @@ class Room():
         return self._monsterList
 
     @property
-    def roomCleared(self):
-        return self._roomCleared
+    def cleared(self):
+        return self._cleared
 
-    @roomCleared.setter
-    def roomCleared(self, boolean):
-        self._roomCleared = boolean
+    @property
+    def movingRooms(self):
+        return self._movingRooms
 
-    def is_room_cleared():
-        return self._roomCleared
+    @cleared.setter
+    def cleared(self, boolean):
+        self._cleared = boolean
+
+    @movingRooms.setter
+    def movingRooms(self, boolean):
+        self._movingRooms = boolean
 
 if __name__ == '__main__': pass
