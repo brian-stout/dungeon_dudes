@@ -60,6 +60,13 @@ class Creature():
     def __str__(self):
         return self._name + ": " + str(self._hp) + "/" + str(self._maxHp) + " hp"
 
+    def __lt__(self, other):
+        return self.initiative < other.initiative
+
+    def __gt__(self, other):
+        return self.initiative > other.initiative
+
+
     def take_damage(self, dmg):
         self.hp -= dmg
         #Ensures no overkills happens

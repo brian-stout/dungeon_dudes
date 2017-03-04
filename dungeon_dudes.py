@@ -18,14 +18,36 @@ def generate_rooms():
         roomList.append(room)
 
     return roomList
-        
-        
+
 
 def roll_for_initiative(hero, room):
     for monster in room.monsterList:
         monster.initiative = dice.d20()
 
-def generate_menu(hero, room):
+    hero.initiative = dice.d20()
+
+
+def check_inventory(hero):
+    print("Checking inventory")
+
+def move_to_next_room(room):
+    print("Moving to next room")
+
+def hero_status(hero):
+    print("Hero status")
+
+def room_enemy_statuses(monsterList):
+    print("All the enemy statuses")
+
+def attack_enemy(hero, monster):
+    print("Attacking the enemy")
+
+def use_menu(hero, room, monster):
+
+    function_switch = {"A" : check_inventory, "B" : move_to_next_room,
+                       "C" : print, "D" : room_enemy_statuses,
+                       "E" : hero.attack}
+
     print("A - Check your inventory")
     if room.is_room_cleared:
         print("B - Move on to the next room")
@@ -34,6 +56,8 @@ def generate_menu(hero, room):
     print("C - Check your health")
     print("D - Check their health")
     print("E - Attack the nearest enemy")
+
+    switch = input("Select a menu option")
 
     
     
@@ -49,8 +73,19 @@ def main():
     print("You start your glorious adventure!")
 
     roomList = generate_rooms()
+    currentRoom = 0
 
-    print(roomList)
+    roll_for_initiative(hero, roomList[currentRoom])
+    monsterList = roomList[currentRoom].monsterList
+    monsterList.sort(reverse=True)
+    
+    for monster in monsterList:
+        print(monster, end="")
+        print(" " + str(monster.initiative))
+
+    #use_menu(hero, roomList[currentRoom], roomList[currentRoom].monsterList[0])
+
+
 
 if __name__ == "__main__":
     main()
