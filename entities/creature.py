@@ -4,7 +4,7 @@ class Creature():
     ##TODO: Needs to import this from a file stored outside of the program
     ##          or reorganize the list to make each entry single line
     creatureList = [[10, 3, "Hero"], [1, 1, "Giant Rat"], [1, 3, "Wolf"],
-                    [3, 1, "Skeleton"], [2, 2, "Goblin"], [5, 1, "Undead"]
+                    [3, 1, "Skeleton"], [2, 2, "Goblin"], [5, 1, "Undead"],
                     [5, 3, "Orc Warrior"], [10, 3, "The Overlord"]]
 
     def __init__(self, creatureType = 0):
@@ -13,6 +13,7 @@ class Creature():
         self._hp = Creature.creatureList[creatureType][0]
         self._diceRolls = Creature.creatureList[creatureType][1]
         self._name = Creature.creatureList[creatureType][2]
+        self._initiative = 0
 
     @property
     def maxHp(self):
@@ -34,6 +35,11 @@ class Creature():
     def name(self):
         return self._name
     #TODO: Raise exceptions for trying to set values like DiceRolls, or maxHp
+
+    @property
+    def initiative(self):
+        return self._initiative
+
     @hp.setter
     def hp(self, hp):
         self._hp = hp
@@ -46,6 +52,10 @@ class Creature():
     def creatureType(self, creatureType):
         self._creatureType = creatureType
         self._name = Creature.creatureList[creatureType][1]
+
+    @initiative.setter
+    def initiative(self, initiative):
+        self._initiative = initiative
 
     def __str__(self):
         return self._name + ": " + str(self._hp) + "/" + str(self._maxHp) + " hp"
